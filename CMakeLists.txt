@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ptex)
+project(ptex VERSION 2.1.28)
 
 include(GNUInstallDirs)
 include(CTest)
@@ -42,3 +42,6 @@ add_subdirectory(src/ptex)
 add_subdirectory(src/utils)
 add_subdirectory(src/tests)
 add_subdirectory(src/doc)
+
+configure_file(cmake/Ptex-config-version.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/Ptex-config-version.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Ptex-config-version.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/cmake)
