@@ -22,7 +22,19 @@ set_target_properties(Ptex_dynamic PROPERTIES OUTPUT_NAME Ptex)
 
 target_link_libraries(Ptex_dynamic ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARIES})
 
-install(TARGETS Ptex_static Ptex_dynamic DESTINATION ${CMAKE_INSTALL_LIBDIR})
+target_include_directories(Ptex_static PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_include_directories(Ptex_dynamic PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+)
+
+install(TARGETS Ptex_static Ptex_dynamic DESTINATION ${CMAKE_INSTALL_LIBDIR} EXPORT Ptex-config)
+
+install(EXPORT Ptex-config NAMESPACE Ptex:: DESTINATION ${CMAKE_INSTALL_PREFIX}/cmake)
 
 install(FILES
         PtexHalf.h

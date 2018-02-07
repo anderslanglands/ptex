@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 project(ptex)
 
 include(GNUInstallDirs)
@@ -36,7 +36,6 @@ if (${PRMAN_15_COMPATIBLE_PTEX})
     add_definitions(-DPTEX_NO_LARGE_METADATA_BLOCKS)
 endif ()
 
-include_directories(src/ptex)
 include_directories(${ZLIB_INCLUDE_DIR})
 
 add_subdirectory(src/ptex)
